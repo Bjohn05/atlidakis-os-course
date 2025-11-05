@@ -6,7 +6,7 @@
 #include <linux/errno.h>
 #include <linux/kernel.h>
 
-SYSCALL_DEFINE2(k22tree,struct k22info __user *,user_buf,int __user *,user_ne){
+static int do_k22tree(struct k22info  __user *user_buf, int  __user *user_ne){
     int ne;
     struct k22info *kbuf;
 
@@ -35,3 +35,5 @@ SYSCALL_DEFINE2(k22tree,struct k22info __user *,user_buf,int __user *,user_ne){
 
     return ne;
 }
+SYSCALL_DEFINE2(k22tree, struct k22info __user *,user_buf,int __user *,user_ne){
+    return do_k22tree(user_buf, user_ne);}
